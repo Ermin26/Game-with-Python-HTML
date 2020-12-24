@@ -1,5 +1,5 @@
 venv/
-*.py[cod]
+*.pyc
 .idea
 *.sqlite
 __pycache__
