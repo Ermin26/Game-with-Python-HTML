@@ -2,3 +2,4 @@
 *.py
 venv/
 *.sqlite
+__pycache__
