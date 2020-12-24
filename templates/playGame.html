@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Play game{% endblock title %}
+
+
+{% block content %}
+
+    <div class="container text-center">
+
+
+        <ul class="nav nav-pills nav-justified mb-5" style="border:1px solid black">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Top scoores</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/play">Play game</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log out</a>
+                    </li>
+                </ul>
+    <br>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>❌❌
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+                <br>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+            <h1>Good luck {{user.name}}. Enter number between 1 and 30.</h1>
+        <br>
+
+        <form method="post" action="/result">
+
+            <input class="text-center" type="text" name="guess" placeholder="Your guess" autofocus>
+                <br>
+            <button class="btn btn-primary mt-3">Check</button>
+            <button class="btn btn-warning mt-3 ml-3"><a href="/">Give up</a></button>
+
+        </form>
+
+
+    </div>
+
+{% endblock content %}

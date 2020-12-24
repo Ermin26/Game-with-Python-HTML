@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ user.name }} stats{% endblock title %}
+
+
+{% block content %}
+<div class="container text-center">
+{% if user %}
+
+            <ul class="nav nav-pills nav-justified mb-5" style="border:1px solid black">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Top scoores</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/play">Play game</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Log out</a>
+                    </li>
+                </ul>
+    <br>
+            <h1>Hello {{user.name}}. Here are your stats.</h1>
+
+
+    <br><br>
+    <br><br>
+
+            <table class="table table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">User name</th>
+                      <th scope="col">User email</th>
+                      <th scope="col">Played games</th>
+                      <th scope="col">Wins</th>
+                      <th scope="col">Give up</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{user.name}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.games}}</td>
+                      <td>{{user.wins}}</td>
+                      <td>{{user.losses}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+{% else %}
+
+            <h1 class="text-center">Hello there. Please sign in to play game</h1>
+                <br>
+
+            <form method="post" action="/register">
+
+              <div class="mb-3 text-center">
+
+                <label for="name" class="form-label">User name</label>
+                <input type="text" class="form-control text-center" name="name" id="name" placeholder="Enter your user name">
+
+              </div>
+
+                <div class="mb-3 text-center">
+
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control text-center" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter your mail">
+
+                </div>
+
+                <div class="mb-3 text-center">
+
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control text-center" name="password" id="password" placeholder="Enter your password">
+
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+
+{% endif %}
+</div>
+{% endblock content %}

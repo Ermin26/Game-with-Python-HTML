@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Success😁😁{% endblock title %}
+
+
+
+{% block content %}
+    <div class="container text-center">
+
+        <ul class="nav nav-pills nav-justified mb-5" style="border:1px solid black">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Top scoores</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/play">Play game</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/">Log out</a>
+            </li>
+        </ul>
+                    <br>
+                    <br>
+                    <br>
+
+
+        <div class="alert alert-success alert-dismissible fade show text-center mt-5" role="alert">
+           😁 <strong>Congralutions! You guessed it. The secret number was {{ guess }}.</strong> 😁
+            <button type="button" class="btn btn-close btn-light" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <button class="btn btn-dark"><a href="/play">Play new game.</a></button>
+    </div>
+
+
+{% endblock content %}
