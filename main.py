@@ -162,6 +162,7 @@ def give_up():
     user = db.query(User).filter_by(name=name).first()
 
     user.losses += 1
+    user.games += 1
 
     return render_template("home.html", user=user)
 
