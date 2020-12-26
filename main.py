@@ -50,12 +50,6 @@ def register():
 
     losses = 0
 
-    pl_games = 0
-
-    pl_wins = 0
-
-    pl_losses = 0
-
     user = db.query(User).filter_by(name=name).first()
 
     if not user:
@@ -67,11 +61,7 @@ def register():
             secret_number=secret_number,
             games=games,
             wins=wins,
-            losses=losses,
-            pl_games=pl_games,
-            pl_wins=pl_wins,
-            pl_losses=pl_losses
-        )
+            losses=losses)
 
         db.add(user)
         db.commit()
@@ -122,10 +112,6 @@ def result():
 
         flash(f"Congralutions! You guessed it. The secret number was {guess}")
 
-        user.pl_games += 1
-
-        user.pl_wins += 1
-
         user.games += 1
 
         user.wins += 1
@@ -163,6 +149,9 @@ def give_up():
 
     user.losses += 1
     user.games += 1
+
+    db.add(user)
+    db.commit()
 
     return render_template("home.html", user=user)
 

@@ -14,9 +14,6 @@ class User(db.Model):
     games = db.Column(db.Integer,)
     wins = db.Column(db.Integer,)
     losses = db.Column(db.Integer,)
-    pl_games = db.Column(db.Integer,)
-    pl_wins = db.Column(db.Integer,)
-    pl_losses = db.Column(db.Integer,)
 
 """"
 class ScoreList(db.Model):
