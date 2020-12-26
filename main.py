@@ -1,7 +1,16 @@
 import random
 import time
 import datetime
-from flask import Flask, request, render_template, redirect, url_for, make_response, flash
+import json
+from flask import (
+    Flask,
+    request,
+    render_template,
+    redirect,
+    url_for,
+    make_response,
+    flash,
+)
 from models import db, User
 from uuid import uuid4
 
@@ -10,8 +19,6 @@ app = Flask(__name__)
 app.secret_key = "game-key"
 db.create_all()
 
-
-# preveri če obstaja korisnik
 
 @app.route("/", methods=["GET"])
 def home():
@@ -22,13 +29,11 @@ def home():
 
         user = db.query(User).filter_by(name=name).first()
 
-
-
     else:
-
         user = None
 
     return render_template("home.html", user=user)
+
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -45,14 +50,32 @@ def register():
 
     losses = 0
 
+    pl_games = 0
+
+    pl_wins = 0
+
+    pl_losses = 0
+
     user = db.query(User).filter_by(name=name).first()
 
     if not user:
 
-        user = User(name=name, email=email, password=password, secret_number=secret_number, games=games, wins=wins, losses=losses)
+        user = User(
+            name=name,
+            email=email,
+            password=password,
+            secret_number=secret_number,
+            games=games,
+            wins=wins,
+            losses=losses,
+            pl_games=pl_games,
+            pl_wins=pl_wins,
+            pl_losses=pl_losses
+        )
 
         db.add(user)
         db.commit()
+
 
     if password != user.password:
         Flash(f"Wrong password. Ty again")
@@ -64,8 +87,10 @@ def register():
         db.add(user)
         db.commit()
 
-        response = make_response(redirect(url_for('home')))
-        response.set_cookie("session_token", session_token, httponly=True, samesite='Strict')
+        response = make_response(redirect(url_for("home")))
+        response.set_cookie(
+            "session_token", session_token, httponly=True, samesite="Strict"
+        )
         response.set_cookie("name", name)
 
     return response
@@ -76,7 +101,16 @@ def play():
 
     user = db.query(User).filter_by(name=name).first()
 
-    return render_template("playGame.html", user=user)
+    return render_template("playGame.html", user=user)\
+
+@app.route("/scorers", methods=["GET", "POST"])
+def score():
+    name = request.cookies.get("name")
+
+    user = db.query(User).filter_by(name=name).first()
+
+    return render_template("TopScores.html", user=user)
+
 
 @app.route("/result", methods=["GET", "POST"])
 def result():
@@ -89,6 +123,12 @@ def result():
 
 
     if guess == user.secret_number:
+
+        flash(f"Congralutions! You guessed it. The secret number was {guess}")
+
+        user.pl_games += 1
+
+        user.pl_wins += 1
 
         user.games += 1
 
@@ -122,5 +162,3 @@ def result():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-

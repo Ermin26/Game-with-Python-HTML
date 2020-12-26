@@ -14,7 +14,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Top scoores</a>
+                <a class="nav-link" href="/scorers">Top scorers</a>
             </li>
 
             <li class="nav-item">
@@ -29,13 +29,21 @@
                     <br>
                     <br>
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
 
         <div class="alert alert-success alert-dismissible fade show text-center mt-5" role="alert">
-           😁 <strong>Congralutions! You guessed it. The secret number was {{ guess }}.</strong> 😁
+            😁 <strong>{{ message }}.</strong> 😁
             <button type="button" class="btn btn-close btn-light" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <button class="btn btn-dark"><a href="/play">Play new game.</a></button>
+
+
+     {% endfor %}
+  {% endif %}
+{% endwith %}
+        <button type="submit" class="btn btn-dark mt-3"><a href="/play">Play new game</a></button>
     </div>
 
 

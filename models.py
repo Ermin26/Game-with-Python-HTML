@@ -1,12 +1,10 @@
 import os
 from sqla_wrapper import SQLAlchemy
 
-
 db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///users.sqlite"))
 
 
 class User(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
     email = db.Column(db.String, unique=True)
@@ -16,3 +14,15 @@ class User(db.Model):
     games = db.Column(db.Integer,)
     wins = db.Column(db.Integer,)
     losses = db.Column(db.Integer,)
+    pl_games = db.Column(db.Integer,)
+    pl_wins = db.Column(db.Integer,)
+    pl_losses = db.Column(db.Integer,)
+
+""""
+class ScoreList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+    email = db.Column(db.String, unique=True)
+    pl_games = db.Column(db.Integer,)
+    pl_wins = db.Column(db.Integer,)
+    pl_losses = db.Column(db.Integer,)"""
