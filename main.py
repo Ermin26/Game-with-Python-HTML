@@ -76,7 +76,6 @@ def register():
         db.add(user)
         db.commit()
 
-
     if password != user.password:
         Flash(f"Wrong password. Ty again")
 
@@ -111,7 +110,6 @@ def score():
 
     return render_template("TopScores.html", user=user)
 
-
 @app.route("/result", methods=["GET", "POST"])
 def result():
     guess = int(request.form.get("guess"))
@@ -119,8 +117,6 @@ def result():
     name = request.cookies.get("name")
 
     user = db.query(User).filter_by(name=name).first()
-
-
 
     if guess == user.secret_number:
 
@@ -158,6 +154,16 @@ def result():
         db.commit()
 
     return render_template("playGame.html", user=user)
+
+@app.route("/giveup", methods=["GET", "POST"])
+def give_up():
+    name = request.cookies.get("name")
+
+    user = db.query(User).filter_by(name=name).first()
+
+    user.losses += 1
+
+    return render_template("home.html", user=user)
 
 
 if __name__ == "__main__":
