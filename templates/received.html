@@ -10,7 +10,7 @@
 
     <ul class="nav nav-pills navbar-dark bg-dark nav-justified mb-5" style="border:1px solid black">
         <li class="nav-item" style="color:white">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/">Home</a>
         </li>
 
         <li class="nav-item">
@@ -26,7 +26,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/messages">Messages</a>
+            <a class="nav-link active" aria-current="page" href="/messages">Messages</a>
         </li>
 
         <li class="nav-item">
@@ -34,40 +34,31 @@
         </li>
     </ul>
 
-    <br>
-            <h1>Hello {{user.name}}. Here are your stats.</h1>
+        <br>
+        <br>
+<!-- NAVBAR messages -->
 
+    <ul class="nav nav-tabs nav-justified mt-5">
 
-    <br><br>
-    <br><br>
+          <li class="nav-item">
+            <a class="nav-link" href="/messages">Sent messages</a>
+          </li>
 
-            <table class="table table-dark">
-                  <thead>
-                    <tr>
-                      <th scope="col">User name</th>
-                      <th scope="col">User email</th>
-                      <th scope="col">Played games</th>
-                      <th scope="col">Wins</th>
-                      <th scope="col">Give up</th>
-                      <th scope="col">Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{{user.name}}</td>
-                      <td>{{user.email}}</td>
-                      <td>{{user.games}}</td>
-                      <td>{{user.wins}}</td>
-                      <td>{{user.losses}}</td>
-                      <td>{{user.score}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-    {% else%}
-        <h1 class="text-center mt-5">Hello there. Please log in to play game</h1>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/received">Received messages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/allusers">Users</a>
+          </li>
+
+        </ul>
+{% else %}
+
+            <h1 class="text-center">Hello there. Please sign in to play game</h1>
                 <br>
 
-            <form method="post" action="/login">
+            <form method="post" action="/register">
 
                 {% with messages = get_flashed_messages() %}
                   {% if messages %}
@@ -88,14 +79,21 @@
 
               <div class="form-floating mb-3 text-center">
 
+                <input type="email" class="form-control text-center" name="email" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput"><b>Email address</b></label>
+
+              </div>
+
+              <div class="form-floating mb-3 text-center">
+
                 <input type="password" class="form-control text-center" name="password" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword"><b>Password</b></label>
 
               </div>
 
-                <button type="submit"  class="btn btn-success mt-2"><b>Submit</b></button>
-                <button type="submit"  class="btn btn-primary mt-2" formaction="/please-register"><a class="text-white" style="text-decoration: none" href="/please-register"><b>Register</b></a></button>
+                <button type="submit"  class="btn btn-primary mt-2 "><b>Submit</b></button>
             </form>
+
     {% endif %}
 </div>
 

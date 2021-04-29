@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Messages{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    {% if user %}
+
+        <!-- NAVBAR -->
+
+        <ul class="nav nav-pills navbar-dark bg-dark nav-justified mb-5" style="border:1px solid black">
+            <li class="nav-item" style="color:white">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/scorers">Top scorers</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/play">Play game</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">My profile</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/messages">Messages</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+        </ul>
+
+            <br>
+            <br>
+
+    <!-- NAVBAR messages -->
+
+        <ul class="nav nav-tabs nav-justified mt-5">
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/messages">Sent messages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/received">Received messages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/allusers">Users</a>
+          </li>
+
+        </ul>
+
+
+
+    {% else %}
+        {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                        <b><span style="color:red">{{ message }}</span></b>
+                        <br>
+                        <br>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+    {% endif %}
+
+
+    </div>
+
+
+
+
+{% endblock content %}

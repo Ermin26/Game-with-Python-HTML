@@ -5,7 +5,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="static/css/finis.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/772ed573b8.js" crossorigin="anonymous"></script>
 
     <title>{% block title %}Guessing game{% endblock title %}</title>
 </head>
@@ -16,10 +19,19 @@
 
 
 
+
+
+
+
+
+
+
     {% endblock content %}
 
 
-
+<div class="footer">
+    <h1 class="text-center" style="background-color:#021f4f">{{ location }}<small class="text-muted"> {{ temperature }} &#176 C ({{ weather }})</small></h1>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

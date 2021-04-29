@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}My profile {{ user.name }}{% endblock title %}
+
+
+{% block content %}
+    <div class="container text-center">
+        {% if user %}
+        <ul class="nav nav-pills navbar-dark bg-dark nav-justified mb-5" style="border:1px solid black">
+
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/scorers">Top scorers</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/play">Play game</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="/profile">My profile</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/messages">Messages</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+        </ul>
+
+            <br><br><br>
+
+
+        <h2 class="text-center">{{ user.name }} account settings</h2>
+            <br>
+            <br>
+
+        <div class="card ml-auto mr-auto" style="width: 20rem;">
+            <div class="card-body text-left">
+
+                <h5 class="card-title">User name: {{ user.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Email: {{ user.email }}</h6>
+
+                <button class="btn btn-info mt-2"><a href="/profile/edit" class="card-link" style="color:white">Edit profile</a></button>
+                <button class="btn btn-danger mt-2 ml-3"><a href="/profile/delete" class="card-link" style="color:white">Delete profile</a></button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+<br>
+{% endblock %}

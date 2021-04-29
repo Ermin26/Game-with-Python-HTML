@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block content %}
+<div class="container text-center mt-5">
+
+ <h1 class="text-center">Hello there. Please sign in to play game</h1>
+                <br>
+
+
+            <form class="mt-3" method="post" action="/register">
+
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    {% for message in messages %}
+                        <b><span style="color:red">{{ message }}</span></b>
+                        <br>
+                        <br>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+
+              <div class="form-floating mb-3 text-center">
+
+                <input type="text" class="form-control text-center" name="name" id="floatingInput" placeholder="User">
+                <label for="floatingInput"><b>User name</b></label>
+
+              </div>
+
+              <div class="form-floating mb-3 text-center">
+
+                <input type="email" class="form-control text-center" name="email" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput"><b>Email address</b></label>
+
+              </div>
+
+              <div class="form-floating mb-3 text-center">
+
+                <input type="password" class="form-control text-center" name="password" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword"><b>Password</b></label>
+
+              </div>
+
+                <button type="submit"  class="btn btn-primary mt-2 "><b>Submit</b></button>
+            </form>
+
+ {% endblock content %}

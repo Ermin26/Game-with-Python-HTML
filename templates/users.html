@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block content %}
+<div class="container text-center">
+
+        <ul class="nav nav-pills navbar-dark bg-dark nav-justified mb-5" style="border:1px solid black">
+            <li class="nav-item" style="color:white">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/scorers">Top scorers</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/play">Play game</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">My profile</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/messages">Messages</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+        </ul>
+
+            <br>
+            <br>
+
+    <!-- NAVBAR messages -->
+
+        <ul class="nav nav-tabs nav-justified mt-5">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/messages">Sent messages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link " href="/received">Received messages</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/allusers">Users</a>
+          </li>
+            <br>
+
+        </ul>
+
+            <br><br>
+            {% for user in users %}
+               <!-- <dl class="list-group text-left" style="text-decoration: none">
+                    <dt class="p-3" style="border: 1px solid blue"><b>{{ user.name }}</b> <button class="btn btn-primary text-center" style="margin-left: 50px">SEND MSG</button><i class="fa fa-circle-o fa-5x"></i></dt>
+                </dl> -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                            <h3 class=""><b>{{ user.name }}</b></h3>
+
+                    </div>
+
+                    <div class="col-sm">
+                        <button class="btn btn-primary btn-sm text-center" style="margin-left: 50px">SEND MSG</button>
+                    </div>
+                    <div class="col-sm">
+                    {% if user.online == True %}
+                        <span class="dot text-center" style="background-color:green; width:20px; height:20px; border-radius:50%; display:inline-block"></span>
+                    {% elif user.offline == True %}
+                        <span class="dot text-center" style="background-color:red; width:20px; height:20px; border-radius:50%; display:inline-block"></span>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+</div>
+{% endblock content %}
