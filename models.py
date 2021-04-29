@@ -4,7 +4,7 @@ from sqla_wrapper import SQLAlchemy
 from sqlalchemy import Integer, ForeignKey, String, Column
 from sqlalchemy.orm import relationship
 
-db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///users.sqlite"))
+db = SQLAlchemy(os.getenv("DATABASE_URL", "postgresql:///users.sqlite"))
 
 
 class User(db.Model):
